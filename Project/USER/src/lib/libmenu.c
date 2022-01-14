@@ -26,6 +26,7 @@ uint8 level=1,selFirst=0,selSecond=0;
 //RED BLUE YELLOW GREEN WHITE BLACK GRAY BROWN PURPLE PINK
 
 void showFirstMenu(char sel);
+void showSecondMenu(char sel);
 
 void initMenu(){
     gpio_init(KEY1,GPI,0,GPIO_PIN_CONFIG);
@@ -63,6 +64,12 @@ void readKey(){
                 }
                 showFirstMenu(selFirst);
             }
+            if(level==2){
+                if(selSecond>0&&selSecond<=3){
+                    selSecond-=1;
+                }
+                showSecondMenu(selSecond);
+            }
 
         }
         
@@ -75,12 +82,42 @@ void readKey(){
                 }
                 showFirstMenu(selFirst);
             }
+            if(level==2){
+                if(selSecond>=0&&selSecond<3){
+                    selSecond+=1;
+                }
+                showSecondMenu(selSecond);
+            }
         }
         
         if(key3_flag)   
         {
             key3_flag = 0;//使用按键之后，应该清除标志位
-
+            if(level==1){
+                lcd_clear(WHITE);
+                showSecondMenu(selSecond);
+            }
+            if(level==2){
+                switch(selSecond){
+                    case 3:{
+                        lcd_clear(WHITE);
+                        showFirstMenu(selFirst);
+                        break;
+                    }
+                    default:{
+                        if(selFirst==2){
+                            lcd_clear(WHITE);
+                            showFirstMenu(selFirst);
+                            break;
+                        }
+                        lcd_clear(WHITE);
+                        showSecondMenu(selSecond);
+                        break;
+                    }
+                }
+                    
+            }
+            
         }
         
         if(key4_flag)   
@@ -91,16 +128,45 @@ void readKey(){
 }
 
 void showFirstMenu(char sel){
+    level=1;
     while (1){
         readKey();
-        lcd_showstrColor(0, 0, "Index",PURPLE);
-        lcd_showstrColor(0, 2, "1. Run",sel==0?BLUE:RED);
-        lcd_showstrColor(0, 3, "2. Settings",sel==1?BLUE:RED);
-        lcd_showstrColor(0, 4, "3. Status",sel==2?BLUE:RED);
-        lcd_showstrColor(0, 5, "4. Run with LCD Off",sel==3?BLUE:RED);
+        lcd_showstrColor(1, 0, "Index",PURPLE);
+        lcd_showstrColor(1, 2, "1. Run",sel==0?BLUE:RED);
+        lcd_showstrColor(1, 3, "2. Settings",sel==1?BLUE:RED);
+        lcd_showstrColor(1, 4, "3. Status",sel==2?BLUE:RED);
+        lcd_showstrColor(1, 5, "4. Run with LCD Off",sel==3?BLUE:RED);
     }
 }
 
+void showSecondMenu(char sel){
+    level=2;
+    while (1){
+        readKey();
+        switch (selFirst){
+            case 1:{
+                lcd_showstrColor(1, 0, "Settings",PURPLE);
+                lcd_showstrColor(1, 2, "1. PID Arguments",sel==0?BLUE:RED);
+                lcd_showstrColor(1, 3, "2. Image Adjust",sel==1?BLUE:RED);
+                lcd_showstrColor(1, 4, "3. Undefined",sel==2?BLUE:RED);
+                lcd_showstrColor(1, 5, "4. Back to Index",sel==3?BLUE:RED);
+                break;
+            }
+            case 2:{
+                lcd_showstrColor(1, 0, "Status",PURPLE);
+                lcd_showstrColor(1, 2, "PID Arguments",BLUE);
+                lcd_showstrColor(1, 3, "P:11 I:45 D:14 ",RED);
+                lcd_showstrColor(1, 4, "LCD Offset",BLUE);
+                lcd_showstrColor(1, 5, "L:0 R:0",RED);
+                lcd_showstrColor(1, 6, "Back to Index",PURPLE);
+                break;
+            }
+            default:{
+                showFirstMenu(selFirst);
+            }
+        }
+    }
+}
 
 
 
