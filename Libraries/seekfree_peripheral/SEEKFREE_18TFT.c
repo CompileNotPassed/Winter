@@ -807,3 +807,34 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
         }
     }
 }
+
+
+void lcd_showstrColor(uint16 x,uint16 y,const int8 dat[],uint16 color)
+{
+	uint16 j;
+	
+	j = 0;
+	while(dat[j] != '\0')
+	{
+		lcd_showcharColor(x+8*j,y*16,dat[j],color);
+		j++;
+	}
+}
+
+void lcd_showcharColor(uint16 x,uint16 y,const int8 dat,uint16 color)
+{
+	uint8 i,j;
+	uint8 temp;
+    
+	for(i=0; i<16; i++)
+	{
+		lcd_set_region(x,y+i,x+7,y+i);
+		temp = tft_ascii[dat-32][i];//减32因为是取模是从空格开始取得 空格在ascii中序号是32
+		for(j=0; j<8; j++)
+		{
+			if(temp&0x01)	lcd_writedata_16bit(color);
+			else			lcd_writedata_16bit(TFT_BGCOLOR);
+			temp>>=1;
+		}
+	}
+}

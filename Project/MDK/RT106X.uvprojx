@@ -10,7 +10,7 @@
       <TargetName>nor_sdram_zf_dtcm_v5</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
+      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -1788,6 +1788,11 @@
               <FileName>libimageprocess.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmenu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3654,6 +3659,11 @@
               <FileName>libimageprocess.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmenu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
             </File>
           </Files>
         </Group>

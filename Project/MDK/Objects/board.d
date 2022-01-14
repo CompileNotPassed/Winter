@@ -1,35 +1,32 @@
-./objects/board.o: ..\..\Libraries\seekfree_libraries\board\board.c \
-  ..\..\Libraries\nxp_libraries\drives\fsl_common.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\assert.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  ..\..\Libraries\nxp_libraries\deceive\fsl_device_registers.h \
-  ..\..\Libraries\nxp_libraries\deceive\MIMXRT1064.h \
-  ..\..\Libraries\nxp_libraries\CMSIS\Include\core_cm7.h \
-  ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_version.h \
-  ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_compiler.h \
-  ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_armclang.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
-  ..\..\Libraries\nxp_libraries\CMSIS\Include\mpu_armv7.h \
-  ..\..\Libraries\nxp_libraries\deceive\system_MIMXRT1064.h \
-  ..\..\Libraries\nxp_libraries\deceive\MIMXRT1064_features.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_clock.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_common.h \
-  ..\..\Libraries\nxp_libraries\utilities\debug_console\fsl_debug_console.h \
-  ..\..\Libraries\nxp_libraries\components\serial_manager\serial_manager.h \
-  ..\..\Libraries\nxp_libraries\components\serial_manager\serial_port_uart.h \
-  ..\..\Libraries\nxp_libraries\components\uart\uart.h \
-  ..\..\Libraries\seekfree_libraries\board\pin_mux.h \
-  ..\..\Libraries\seekfree_libraries\zf_uart.h \
-  ..\..\Libraries\seekfree_libraries\common\common.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_lpuart.h \
-  ..\..\Libraries\seekfree_libraries\board\board.h \
-  ..\USER\inc\RT106X_config.h \
-  ..\..\Libraries\seekfree_libraries\board\clock_config.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_gpio.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_clock.h \
-  ..\..\Libraries\nxp_libraries\drives\fsl_iomuxc.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\board\board.c
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_common.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\deceive\fsl_device_registers.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\deceive\MIMXRT1064.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\CMSIS\Include\core_cm7.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_version.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_compiler.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\CMSIS\Include\cmsis_armcc.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\CMSIS\Include\mpu_armv7.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\deceive\system_MIMXRT1064.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\deceive\MIMXRT1064_features.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_clock.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_common.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\utilities\debug_console\fsl_debug_console.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\components\serial_manager\serial_manager.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\components\serial_manager\serial_port_uart.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\components\uart\uart.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\board\pin_mux.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\zf_uart.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\common\common.h
+.\objects\board.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_lpuart.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\board\board.h
+.\objects\board.o: ..\USER\inc\RT106X_config.h
+.\objects\board.o: ..\..\Libraries\seekfree_libraries\board\clock_config.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_gpio.h
+.\objects\board.o: ..\..\Libraries\nxp_libraries\drives\fsl_iomuxc.h
