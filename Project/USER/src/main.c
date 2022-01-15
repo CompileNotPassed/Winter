@@ -14,6 +14,7 @@ int main(void)
     
 	systick_delay_ms(300);	//延时300ms，等待主板其他外设上电成功
 
+    bspInit();
 	wirelessInit();
 	
     //显示模式设置为3  竖屏模式
@@ -34,6 +35,7 @@ int main(void)
     EnableGlobalIRQ(0);
 	//lcd_clear(WHITE);
 	//showFirstMenu(0);
+    buzzer(255);
     while(1)
     {
 
