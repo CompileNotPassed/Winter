@@ -12,3 +12,4 @@ void showFirstMenu(char sel);
 //Wireless
 void    wirelessInit(void);
 uint32  sendBuff(uint8 *buff, uint32 len);
+void sendWare(void *wareaddr, uint32 waresize);
