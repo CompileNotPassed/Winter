@@ -44,4 +44,19 @@ void sendWare(void *wareaddr, uint32 waresize)
     uart_putbuff(VCAN_PORT, cmdf, sizeof(cmdf));
     uart_putbuff(VCAN_PORT, (uint8 *) wareaddr, waresize);
     uart_putbuff(VCAN_PORT, cmdr, sizeof(cmdr));
+#undef CMD_WARE
+}
+
+void sendImage(void *wareaddr, uint32 waresize)
+{
+#define VCAN_PORT USART_8
+#define CMD_WARE     1
+
+    int16 i, tem;
+    uint8 cmdf[2] = {CMD_WARE, ~CMD_WARE};
+    uint8 cmdr[2] = {~CMD_WARE, CMD_WARE};
+    uart_putbuff(VCAN_PORT, cmdf, sizeof(cmdf));
+    uart_putbuff(VCAN_PORT, (uint8 *) wareaddr, waresize);
+    uart_putbuff(VCAN_PORT, cmdr, sizeof(cmdr));
+#undef CMD_WARE
 }

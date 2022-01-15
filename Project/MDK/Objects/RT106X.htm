@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\RT106X.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\RT106X.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat Jan 15 12:14:26 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat Jan 15 14:30:22 2022
 <BR><P>
 <H3>Maximum Stack Usage =       1120 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2451,7 +2451,7 @@ Global Symbols
 <LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[a9]"></a>main</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, main.o(.text.main))
+<P><STRONG><a name="[a9]"></a>main</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1120<LI>Call Chain = main &rArr; lcd_init &rArr; spi_init &rArr; CLOCK_GetFreq &rArr; CLOCK_GetPerClkFreq &rArr; CLOCK_GetIpgFreq &rArr; CLOCK_GetAhbFreq &rArr; CLOCK_GetPeriphClkFreq &rArr; CLOCK_GetSysPfdFreq &rArr; CLOCK_GetPllFreq &rArr; __aeabi_assert &rArr; DbgConsole_Printf &rArr; StrFormatPrintf &rArr; ConvertFloatRadixNumToString &rArr; __hardfp_pow &rArr; sqrt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;board_init
@@ -2459,7 +2459,7 @@ Global Symbols
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systick_delay_ms
 <LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wirelessInit
-<LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendWare
+<LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendImage
 <LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initMenu
 <LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableGlobalIRQ
 <LI><a href="#[1d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableGlobalIRQ
@@ -2513,8 +2513,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wirelessInit
 </UL>
 
-<P><STRONG><a name="[1dd]"></a>sendWare</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, libwireless.o(.text.sendWare))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = sendWare &rArr; uart_putbuff &rArr; LPUART_WriteBlocking &rArr;  __aeabi_assert (Cycle)
+<P><STRONG><a name="[1dd]"></a>sendImage</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, libwireless.o(.text.sendImage))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = sendImage &rArr; uart_putbuff &rArr; LPUART_WriteBlocking &rArr;  __aeabi_assert (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_putbuff
 </UL>
@@ -2623,7 +2623,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_config
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_config
-<LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendWare
+<LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendImage
 </UL>
 
 <P><STRONG><a name="[1de]"></a>uart_rx_irq</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, zf_uart.o(.text.uart_rx_irq))
