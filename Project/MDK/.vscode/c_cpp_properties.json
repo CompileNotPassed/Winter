@@ -167,8 +167,7 @@
                 "C:\\Keil_v5\\ARM\\ARMCLANG\\include\\arm_linux",
                 "C:\\Keil_v5\\ARM\\ARMCLANG\\include\\arm_linux_compat",
                 "C:\\Keil_v5\\ARM\\ARMCLANG\\include\\libcxx",
-                "d:\\Code\\Winter\\Libraries\\doc",
-                "d:\\Code\\Winter\\Project\\USER\\src\\lib"
+                "d:\\Code\\Winter\\Libraries\\doc"
             ],
             "defines": [
                 "CPU_MIMXRT1064DVL6A",

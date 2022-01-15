@@ -1809,6 +1809,21 @@
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libbsp.c</FilePath>
             </File>
+            <File>
+              <FileName>libencoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libencoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmotor.c</FilePath>
+            </File>
+            <File>
+              <FileName>libpid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libpid.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3694,6 +3709,21 @@
               <FileName>libbsp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libbsp.c</FilePath>
+            </File>
+            <File>
+              <FileName>libencoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libencoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmotor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmotor.c</FilePath>
+            </File>
+            <File>
+              <FileName>libpid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libpid.c</FilePath>
             </File>
           </Files>
         </Group>
