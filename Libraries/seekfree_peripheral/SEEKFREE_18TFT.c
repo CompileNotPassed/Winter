@@ -144,7 +144,7 @@ void lcd_clear(int color)
 //-------------------------------------------------------------------------------------------------------------------
 void lcd_init(void)
 {	
-    spi_init(TFT_SPIN, TFT_SCL, TFT_SDA, TFT_SDA_IN, TFT_CS, 0, 30*1000*1000);//硬件SPI初始化
+    spi_init(TFT_SPIN, TFT_SCL, TFT_SDA, TFT_SDA_IN, TFT_CS, 0, 100*1000*1000);//硬件SPI初始化
     
     gpio_init(BL_PIN,GPO,1,GPIO_PIN_CONFIG);
     gpio_init(DC_PIN,GPO,0,GPIO_PIN_CONFIG);
@@ -647,7 +647,7 @@ void lcd_displayimage032_zoom(uint8 *p, uint16 width, uint16 height, uint16 dis_
                 
     uint16 color = 0;
 	uint16 temp = 0;
-
+		uint16 minus=(width-dis_width)/2;
     lcd_set_region(0,0,dis_width-1,dis_height-1);//设置显示区域 
     
     for(j=0;j<dis_height;j++)
@@ -767,7 +767,6 @@ void lcd_display_chinese(uint16 x, uint16 y, uint8 size, const uint8 *p, uint8 n
     }
 }
 
-
 void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
 {
     uint32 i,j;
@@ -809,32 +808,3 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
 }
 
 
-void lcd_showstrColor(uint16 x,uint16 y,const int8 dat[],uint16 color)
-{
-	uint16 j;
-	
-	j = 0;
-	while(dat[j] != '\0')
-	{
-		lcd_showcharColor(x+8*j,y*16,dat[j],color);
-		j++;
-	}
-}
-
-void lcd_showcharColor(uint16 x,uint16 y,const int8 dat,uint16 color)
-{
-	uint8 i,j;
-	uint8 temp;
-    
-	for(i=0; i<16; i++)
-	{
-		lcd_set_region(x,y+i,x+7,y+i);
-		temp = tft_ascii[dat-32][i];//减32因为是取模是从空格开始取得 空格在ascii中序号是32
-		for(j=0; j<8; j++)
-		{
-			if(temp&0x01)	lcd_writedata_16bit(color);
-			else			lcd_writedata_16bit(TFT_BGCOLOR);
-			temp>>=1;
-		}
-	}
-}

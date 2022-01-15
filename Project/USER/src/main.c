@@ -56,54 +56,75 @@
 
 
 #include "headfile.h"
-#include <lib/function.h>
-int i,j,cnt=0;
-int8 a[2]={100,70};
-uint8 frame[128][160];
+#include "string.h"
+#include "Otsu.h"
+#include "Motor.h"
+#include "sendware.h"
 
-uint8 uart_flag = 0;		
-uint8 uart_data = 0;
+extern uint8 (*a)[MT9V03X_CSI_W];
+
+void BspInit(void);
+
+float q=400;
+extern int encoder[4];
 
 int main(void)
 {
     DisableGlobalIRQ();
     board_init();   	//务必保留，本函数用于初始化MPU 时钟 调试串口
-    
-	systick_delay_ms(300);	//延时300ms，等待主板其他外设上电成功
-
-	wirelessInit();
+    BspInit();
+		systick_delay_ms(300);	//延时300ms，等待主板其他外设上电成功
 	
     //显示模式设置为3  竖屏模式
     //显示模式在SEEKFREE_18TFT.h文件内的TFT_DISPLAY_DIR宏定义设置
     lcd_init();     	//初始化TFT屏幕
-    lcd_showstr(0,0,"Initializing...");
-    //如果屏幕没有任何显示，请检查屏幕接线
+    lcd_showstr(0,0,"SEEKFREE MT9V03x");
+    lcd_showstr(0,1,"Initializing...");
     
-	initMenu();
-    mt9v03x_csi_init();	//初始化摄像头 使用CSI接口
-    //如果屏幕一直显示初始化信息，请检查摄像头接线
-    //如果使用主板，一直卡在while(!uart_receive_flag)，请检查是否电池连接OK?
-    //如果图像只采集一次，请检查场信号(VSY)是否连接OK?
+    mt9v03x_csi_init();	
     
-    lcd_showstr(0,1,"Init OK.");
+    lcd_showstr(0,1,"     OK...     ");
     systick_delay_ms(500);
     
     EnableGlobalIRQ(0);
-	//lcd_clear(WHITE);
-	//showFirstMenu(0);
     while(1)
     {
-			//sendBuff(test1,sizeof(test1)-1);
-			//sendBuff(test2,sizeof(test2)-1);
-			sendWare(a,sizeof(a));
-			systick_delay_ms(100);
-	}
-		
-    
-
+			MotorOutput(Motor,&q);
+			if(mt9v03x_csi_finish_flag)
+      {
+				mt9v03x_csi_finish_flag = 0;
+				JudgeMid(a,mt9v03x_csi_image,MT9V03X_CSI_W, MT9V03X_CSI_H);
+				//lcd_displayimage032_zoom(mt9v03x_csi_image[0], MT9V03X_CSI_W, MT9V03X_CSI_H, 160, 128);
+       }
+//			vcan_sendware(encoder,sizeof(encoder));
+    }
 }
 
 
-
+void BspInit()
+{
+	gpio_init(B9,GPO,0,GPIO_PIN_CONFIG); 
+	gpio_init(D0,GPO,1,GPIO_PIN_CONFIG);  //leftbot
+	gpio_init(D1,GPO,0,GPIO_PIN_CONFIG);  //rightbot
+	gpio_init(D14,GPO,0,GPIO_PIN_CONFIG);  //lefttop
+	gpio_init(D15,GPO,0,GPIO_PIN_CONFIG);  //righttop
+	
+  pwm_init(PWM2_MODULE3_CHB_D3 , 17000, 0);  //  0  rightbot
+  pwm_init(PWM2_MODULE3_CHA_D2 , 17000, 0);  // 1  leftbot
+	pwm_init(PWM1_MODULE0_CHB_D13, 17000, 0);  //  0  righttop
+	pwm_init(PWM1_MODULE0_CHA_D12, 17000, 0);  // 0  lefttop
+	
+	qtimer_quad_init(QTIMER_1,QTIMER1_TIMER0_C0,QTIMER1_TIMER1_C1);   //初始化 QTIMER_1 A相使用QTIMER1_TIMER2_C2 B相使用QTIMER1_TIMER3_C24
+  qtimer_quad_init(QTIMER_1,QTIMER1_TIMER2_C2,QTIMER1_TIMER3_C24);    
+  qtimer_quad_init(QTIMER_2,QTIMER2_TIMER0_C3,QTIMER2_TIMER3_C25);
+  qtimer_quad_init(QTIMER_3,QTIMER3_TIMER2_B18,QTIMER3_TIMER3_B19);
+	
+	pit_init();                     //初始化pit外设
+  pit_interrupt_ms(PIT_CH0,10);  //初始化pit通道0 周期
+	NVIC_SetPriority(PIT_IRQn,0); 
+	
+	Position_PID_Init(Motor,25,0.1,0,30000,15000);
+	seekfree_wireless_init();
+}
 
 
