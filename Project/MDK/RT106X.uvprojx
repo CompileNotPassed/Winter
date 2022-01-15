@@ -1794,6 +1794,11 @@
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libmenu.c</FilePath>
             </File>
+            <File>
+              <FileName>libwireless.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3664,6 +3669,11 @@
               <FileName>libmenu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libmenu.c</FilePath>
+            </File>
+            <File>
+              <FileName>libwireless.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
             </File>
           </Files>
         </Group>

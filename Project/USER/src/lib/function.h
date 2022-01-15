@@ -9,3 +9,6 @@ void initMenu();
 void readKey();
 void showFirstMenu(char sel);
 //Move
+//Wireless
+void    wirelessInit(void);
+uint32  sendBuff(uint8 *buff, uint32 len);

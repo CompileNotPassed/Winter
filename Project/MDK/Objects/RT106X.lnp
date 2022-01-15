@@ -132,6 +132,7 @@
 ".\objects\libborderdetect.o"
 ".\objects\libimageprocess.o"
 ".\objects\libmenu.o"
+".\objects\libwireless.o"
 ".\objects\fsl_assert.o"
 ".\objects\fsl_debug_console.o"
 ".\objects\fsl_str.o"

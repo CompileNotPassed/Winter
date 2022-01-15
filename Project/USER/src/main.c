@@ -59,7 +59,11 @@
 #include <lib/function.h>
 int i,j,cnt=0;
 uint8 frame[128][160];
+uint8 test1[] = "seekfree wireless to uart test\n";
+uint8 test2[] = "seekfree.taobao.com\n";
 
+uint8 uart_flag = 0;			// ??????????????·?±ê???? ????±??????á?? wireless_uart_callback ??????1
+uint8 uart_data = 0;			// ??????????????·?±ê???? ????±??????á?? wireless_uart_callback ??????????????
 
 int main(void)
 {
@@ -67,6 +71,8 @@ int main(void)
     board_init();   	//务必保留，本函数用于初始化MPU 时钟 调试串口
     
 	systick_delay_ms(300);	//延时300ms，等待主板其他外设上电成功
+
+	wirelessInit();
 	
     //显示模式设置为3  竖屏模式
     //显示模式在SEEKFREE_18TFT.h文件内的TFT_DISPLAY_DIR宏定义设置
@@ -84,11 +90,12 @@ int main(void)
     systick_delay_ms(500);
     
     EnableGlobalIRQ(0);
-	lcd_clear(WHITE);
-	showFirstMenu(0);
+	//lcd_clear(WHITE);
+	//showFirstMenu(0);
     while(1)
     {
-
+			sendBuff(test1,sizeof(test1)-1);
+			sendBuff(test2,sizeof(test2)-1);
 	}
 		
     
