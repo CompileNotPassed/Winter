@@ -13,7 +13,7 @@ void bspInit()
     gpio_init(D14, GPO, 0, GPIO_PIN_CONFIG); //lefttop
     gpio_init(D15, GPO, 0, GPIO_PIN_CONFIG); //righttop
 
-    pwm_init(PWM2_MODULE3_CHB_D3, 17000, 1000);  //  0  rightbot
+    pwm_init(PWM2_MODULE3_CHB_D3, 17000, 0);  //  0  rightbot
     pwm_init(PWM2_MODULE3_CHA_D2, 17000, 0);  // 1  leftbot
     pwm_init(PWM1_MODULE0_CHB_D13, 17000, 0); //  0  righttop
     pwm_init(PWM1_MODULE0_CHA_D12, 17000, 0); // 0  lefttop

@@ -19,6 +19,10 @@
 
 #include "headfile.h"
 #include "isr.h"
+#include <lib/function.h>
+
+extern float setTarget;
+extern pid_t Motor[4];
 
 void CSI_IRQHandler(void)
 {
@@ -31,7 +35,8 @@ void PIT_IRQHandler(void)
     if(PIT_FLAG_GET(PIT_CH0))
     {
         PIT_FLAG_CLEAR(PIT_CH0);
-
+        getEncoder();
+        MotorOutput(Motor,&setTarget);
     }
     
     if(PIT_FLAG_GET(PIT_CH1))

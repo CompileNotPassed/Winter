@@ -6,7 +6,7 @@ extern int16 encoder[4];
 float speed[4];
 void MotorOutput(pid_t *Mot,float *Target)
 {
-	for(int i=0;i<1;i++)
+	for(int i=0;i<4;i++)
 	{
 		speed[i] = Position_PID_Realize(&Mot[i], Target[i], encoder[i]);
 		EnableMotor(speed[i],i);

@@ -9,9 +9,10 @@ uint8 uart_data = 0;
 
 extern int16 encoder[4];
 extern pid_t Motor[4];
+extern float speed[4];
 
 //TESTUSE
-float setTarget=1500;
+float setTarget[4]={400,400,400,400};
 
 int main(void)
 {
@@ -21,7 +22,10 @@ int main(void)
 	systick_delay_ms(300);	//延时300ms，等待主板其他外设上电成功
 
     bspInit();
-    //Position_PID_Init(Motor,25,0.1,0,30000,15000);
+    Position_PID_Init(&Motor[0],25,0.1,0,30000,15000);
+    Position_PID_Init(&Motor[1],25,0.1,0,30000,15000);
+    Position_PID_Init(&Motor[2],25,0.1,0,30000,15000);
+    Position_PID_Init(&Motor[3],25,0.1,0,30000,15000);
 	wirelessInit();
 	
     //显示模式设置为3  竖屏模式
@@ -59,12 +63,14 @@ int main(void)
 		//sendImage(frame[0], 160*128);
 		//sendImage(mt9v03x_csi_image[0], 168*128);
 
-        lcd_showint16(0,1,encoder[0]);
-        lcd_showint16(0,2,encoder[1]);
-        lcd_showint16(0,3,encoder[2]);
-        lcd_showint16(0,4,encoder[3]);
-        getEncoder();
-        MotorOutput(Motor,&setTarget);
+        lcd_showint16(0,0,encoder[0]);
+        lcd_showint16(0,1,encoder[1]);
+        lcd_showint16(0,2,encoder[2]);
+        lcd_showint16(0,3,encoder[3]);
+        lcd_showint16(0,4,speed[0]);
+        lcd_showint16(0,5,speed[1]);
+        lcd_showint16(0,6,speed[2]);
+        lcd_showint16(0,7,speed[3]);
         sendWare(encoder,sizeof(encoder));
 	}
 }
