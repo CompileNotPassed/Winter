@@ -5,10 +5,19 @@
 //ImageProcess
 void picGamma(uint8 in_array[][168], uint8 out_array[][168], long height, long width);
 uint8 OTSU(uint8 *pic, uint16 num);
+void Get_Bin_Image (unsigned char mode,unsigned char Image_Use[][160],unsigned char Bin_Image[][160]);
+short GetOSTU (unsigned char tmImage[128][160]);
 
 //BorderDetect
 //void borderDetect(uint8 in[][160], uint8 out[][160]);
-void borderDetect(uint8 (*in)[MT9V03X_CSI_W], uint8 (*out)[MT9V03X_CSI_W]);
+//void borderDetect(uint8 (*in)[MT9V03X_CSI_W], uint8 (*out)[MT9V03X_CSI_W]);
+uint8_t ImageGetSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2]);
+uint8_t UpdownSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160]);
+//void lq_sobel (unsigned char imageIn[128][160], unsigned char imageOut[128][160], unsigned char Threshold);
+//void lq_sobelAutoThreshold (unsigned char imageIn[128][160], unsigned char imageOut[128][160]);
+
+//Filter
+void Bin_Image_Filter (unsigned char Bin_Image[][160]);
 
 //Calc
 float linearFitting(uint8 line[MT9V03X_CSI_H],int16 lineFitted[MT9V03X_CSI_H]);

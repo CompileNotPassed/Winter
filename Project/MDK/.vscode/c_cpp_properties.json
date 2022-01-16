@@ -38,7 +38,8 @@
                 "C:\\Keil_v5\\ARM\\ARMCC\\include",
                 "C:\\Keil_v5\\ARM\\ARMCC\\include\\rw",
                 "d:\\Code\\Winter\\Libraries\\doc",
-                "d:\\Code\\Winter\\Project\\USER\\src\\lib"
+                "d:\\Code\\Winter\\Project\\USER\\src\\lib",
+                "d:\\Code\\Winter\\Project\\USER\\src\\recognize"
             ],
             "defines": [
                 "CPU_MIMXRT1064DVL6A",

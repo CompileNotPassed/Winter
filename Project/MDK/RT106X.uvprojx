@@ -1785,19 +1785,9 @@
               <FilePath>..\USER\src\lib\libborderdetect.c</FilePath>
             </File>
             <File>
-              <FileName>libimageprocess.c</FileName>
+              <FileName>libbsp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
-            </File>
-            <File>
-              <FileName>libwireless.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
+              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
             </File>
             <File>
               <FileName>libbuzzer.c</FileName>
@@ -1805,14 +1795,24 @@
               <FilePath>..\USER\src\lib\libbuzzer.c</FilePath>
             </File>
             <File>
-              <FileName>libbsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
-            </File>
-            <File>
               <FileName>libencoder.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libencoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>libimageprocess.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmecmove.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmecmove.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmenu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
             </File>
             <File>
               <FileName>libmotor.c</FileName>
@@ -1823,6 +1823,31 @@
               <FileName>libpid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libpid.c</FilePath>
+            </File>
+            <File>
+              <FileName>libwireless.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
+            </File>
+            <File>
+              <FileName>libcalc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libcalc.c</FilePath>
+            </File>
+            <File>
+              <FileName>regRing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\recognize\regRing.c</FilePath>
+            </File>
+            <File>
+              <FileName>regLost.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\recognize\regLost.c</FilePath>
+            </File>
+            <File>
+              <FileName>libfilter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libfilter.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3686,19 +3711,9 @@
               <FilePath>..\USER\src\lib\libborderdetect.c</FilePath>
             </File>
             <File>
-              <FileName>libimageprocess.c</FileName>
+              <FileName>libbsp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
-            </File>
-            <File>
-              <FileName>libwireless.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
+              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
             </File>
             <File>
               <FileName>libbuzzer.c</FileName>
@@ -3706,14 +3721,24 @@
               <FilePath>..\USER\src\lib\libbuzzer.c</FilePath>
             </File>
             <File>
-              <FileName>libbsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
-            </File>
-            <File>
               <FileName>libencoder.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libencoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>libimageprocess.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmecmove.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmecmove.c</FilePath>
+            </File>
+            <File>
+              <FileName>libmenu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
             </File>
             <File>
               <FileName>libmotor.c</FileName>
@@ -3724,6 +3749,31 @@
               <FileName>libpid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\src\lib\libpid.c</FilePath>
+            </File>
+            <File>
+              <FileName>libwireless.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
+            </File>
+            <File>
+              <FileName>libcalc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libcalc.c</FilePath>
+            </File>
+            <File>
+              <FileName>regRing.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\recognize\regRing.c</FilePath>
+            </File>
+            <File>
+              <FileName>regLost.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\recognize\regLost.c</FilePath>
+            </File>
+            <File>
+              <FileName>libfilter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\src\lib\libfilter.c</FilePath>
             </File>
           </Files>
         </Group>

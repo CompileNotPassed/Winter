@@ -767,6 +767,15 @@ void lcd_display_chinese(uint16 x, uint16 y, uint8 size, const uint8 *p, uint8 n
     }
 }
 
+//运算行
+#define ROAD_MAIN_ROW      40
+//检测开始
+#define ROAD_START_ROW     115
+//检测结束
+#define ROAD_END_ROW       10
+
+extern uint8_t sideLine[128][2];
+extern uint8_t updownLine[2][160];
 
 void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
 {
@@ -782,7 +791,7 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
         for(i=0;i<dis_width;i++)
         {
             temp = *(p+(j*height/dis_height)*width+i*width/dis_width);//读取像素点
-						
+                    
 					//COLOR DEFINATION
 					
 						switch(temp){
@@ -803,6 +812,21 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
 								
 							}
 						}
+
+                        if(i==sideLine[j][0]){
+                            color=RED;
+                        }
+                        if(i==sideLine[j][1]){
+                            color=GREEN;
+                        }
+                        if (j==updownLine[0][i]){
+                            color=YELLOW;
+                        }
+                        if(j==updownLine[1][i]){
+                            color=PURPLE;
+                        }
+                        
+
 						lcd_writedata_16bit(color); 
         }
     }

@@ -1,8 +1,15 @@
 #include "headfile.h"
-#include "math.h"
 #include "string.h"
 
 #define LOST_FLAG 255
+
+uint8 maxInt(uint8 a,uint8 b){
+    return a > b ? a : b;
+}
+
+uint8 minInt(uint8 a,uint8 b){
+    return a > b ? b : a;
+}
 
 int16 fix(float x){
     //将数字舍入最近的整数
@@ -14,12 +21,22 @@ int16 fix(float x){
     else if(x > 0){
         floorDiff = x-xInt;
         ceilDiff = xInt+1-x;
-        return floorDiff>ceilDiff?xInt+1:xInt;
+        if(floorDiff>ceilDiff){
+            return xInt+1; 
+        }
+        else{
+            return xInt;
+        }
     }
     else if(x < 0){
         floorDiff = xInt-x;
         ceilDiff = x-xInt+1;
-        return floorDiff>ceilDiff?xInt:xInt-1;
+        if(floorDiff>ceilDiff){
+            return xInt; 
+        }
+        else{
+            return xInt-1;
+        }
     }
 }
 
@@ -34,7 +51,7 @@ float averagey(uint8 line[MT9V03X_CSI_H],uint8 *n,uint8 startLine,uint8 endLine)
         }
     }
     avg=(float)sum/countVaild;
-    n=countVaild;
+    *n=countVaild;
     return avg;
 }
 
@@ -84,10 +101,10 @@ float linearFitting(uint8 line[MT9V03X_CSI_H],int16 lineFitted[MT9V03X_CSI_H],ui
     float xAvg,yAvg,slope,aHat,bHat,c,d;
     uint16 xySum,xSquareSum;
 
-    memset(lineFitted,0xff,sizeof(lineFitted)); //处理范围以外的部分置FF
+    memset(lineFitted,0,sizeof(lineFitted[0]*MT9V03X_CSI_H)); //处理范围以外的部分置FF
 
-    startLine=min(startLine,MT9V03X_CSI_H);
-    endLine=max(startLine,0);
+    startLine=minInt(startLine,MT9V03X_CSI_H);
+    endLine=maxInt(startLine,0);
 
     yAvg=averagey(line,&countVaild,startLine,endLine);
     xAvg=averagex(line,startLine,endLine);
@@ -103,4 +120,5 @@ float linearFitting(uint8 line[MT9V03X_CSI_H],int16 lineFitted[MT9V03X_CSI_H],ui
     for(uint8 i=endLine;i<startLine;i++){
         lineFitted[i]=fix(c*i+d);
     }
+    return bHat;
 }
