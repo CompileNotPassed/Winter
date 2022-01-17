@@ -1,6 +1,7 @@
 #include "headfile.h"
 
 //Frame Process
+
 short GetOSTU (unsigned char tmImage[128][160])
 {
     signed short i, j;
@@ -267,7 +268,7 @@ void Get_Bin_Image (unsigned char mode,unsigned char Image_Use[][160],unsigned c
         }
     }
 }
-void picGamma(uint8 in_array[][168], uint8 out_array[][168], long height, long width)
+void picGamma(uint8 in_array[][160], uint8 out_array[][160], long height, long width)
 {
     for (int i = 0; i < height; i++){
         for (int j = 0; j <width; j++)

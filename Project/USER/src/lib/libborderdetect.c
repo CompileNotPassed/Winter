@@ -1,63 +1,73 @@
-
-
 #include "headfile.h"
 
 //运算行
-#define ROAD_MAIN_ROW      40
+#define ROAD_MAIN_ROW 40
 //检测开始
-#define ROAD_START_ROW     115
+#define ROAD_START_ROW 115
 //检测结束
-#define ROAD_END_ROW       10
+#define ROAD_END_ROW 10
 
 uint8_t sideLine[128][2];
 uint8_t updownLine[2][160];
+
+void edgeDetect(unsigned char image[128][160])
+{
+    int16 nr; //行
+    int16 nc; //列
+
+    for (nr = 1; nr < 128 - 1; nr++)
+    {
+        for (nc = 1; nc < 160 - 1; nc++)
+        {
+            if ((image[nr][nc] == 0) && (image[nr - 1][nc] == 0) && (image[nr + 1][nc] == 0) && (image[nr][nc + 1] == 0) && (image[nr][nc - 1] == 0))
+            {
+                image[nr][nc] = 1;
+                nr++;
+                nc++;
+            }
+        }
+    }
+}
 
 void RoadNoSideProcess(uint8_t imageInput[128][160], uint8_t imageOut[128][2], uint8_t mode, uint8_t lineIndex)
 {
     uint8_t i = 0, j = 0, count = 0;
 
-    switch(mode)
+    switch (mode)
     {
-      case 1:
-        for(i = imageOut[lineIndex][1]; i > 1; i--)
+    case 1:
+        for (i = imageOut[lineIndex][1]; i > 1; i--)
         {
             count++;
-            for(j = lineIndex; j > ROAD_END_ROW && lineIndex > count; j--)
+            for (j = lineIndex; j > ROAD_END_ROW && lineIndex > count; j--)
             {
-                if(imageInput[j][i])
+                if (imageInput[j][i])
                 {
                     imageOut[lineIndex - count][0] = 0;
                     imageOut[lineIndex - count][1] = i;
                     break;
                 }
-
             }
         }
         break;
 
-
-      case 2:
-        for(i = imageOut[lineIndex][0]; i < 159; i++)
+    case 2:
+        for (i = imageOut[lineIndex][0]; i < 159; i++)
         {
             count++;
-            for(j = lineIndex; j > ROAD_END_ROW && lineIndex > count; j--)
+            for (j = lineIndex; j > ROAD_END_ROW && lineIndex > count; j--)
             {
-                if(imageInput[j][i])
+                if (imageInput[j][i])
                 {
                     imageOut[lineIndex - count][0] = i;
                     imageOut[lineIndex - count][1] = 159;
                     break;
                 }
-
             }
         }
         break;
-
     }
-
 }
-
-
 
 uint8_t RoadIsNoSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2], uint8_t lineIndex)
 {
@@ -68,35 +78,34 @@ uint8_t RoadIsNoSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2], uin
     imageOut[lineIndex][0] = 0;
     imageOut[lineIndex][1] = 159;
     /* 用距离小车比较近的行 判断是否丢线 */
-    for(i = last; i > 1; i--)
+    for (i = last; i > 1; i--)
     {
-        if(imageInput[lineIndex][i])
+        if (imageInput[lineIndex][i])
         {
             imageOut[lineIndex][0] = i;
             break;
         }
     }
 
-    if(i == 1)
+    if (i == 1)
     {
         /* 左边界丢线 */
         state = 1;
     }
 
-
-    for(i = last; i < 159; i++)
+    for (i = last; i < 159; i++)
     {
-        if(imageInput[lineIndex][i])
+        if (imageInput[lineIndex][i])
         {
             imageOut[lineIndex][1] = i;
             break;
         }
     }
 
-    if(i == 159)
+    if (i == 159)
     {
         /* 左右边界丢线 */
-        if(state == 1)
+        if (state == 1)
         {
             state = 3;
         }
@@ -106,14 +115,12 @@ uint8_t RoadIsNoSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2], uin
         {
             state = 2;
         }
-
     }
-    if(imageOut[lineIndex][1] <= imageOut[lineIndex][0])
+    if (imageOut[lineIndex][1] <= imageOut[lineIndex][0])
     {
         state = 4;
     }
     return state;
-
 }
 //Border Detect
 uint8_t ImageGetSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2])
@@ -123,35 +130,35 @@ uint8_t ImageGetSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2])
     RoadIsNoSide(imageInput, imageOut, ROAD_START_ROW);
 
     /* 离车头近的40行 寻找边线 */
-    for(i = ROAD_START_ROW-1; i > ROAD_END_ROW; i--)
+    for (i = ROAD_START_ROW - 1; i > ROAD_END_ROW; i--)
     {
         imageOut[i][0] = 0;
         imageOut[i][1] = 159;
 
         /* 根据边界连续特性 寻找边界 */
-        for(j = imageOut[i+1][0] + 10; j > 0; j--)
+        for (j = imageOut[i + 1][0] + 10; j > 0; j--)
         {
-            if(!imageInput[i][j])
+            if (!imageInput[i][j])
             {
                 imageOut[i][0] = j;
                 break;
             }
         }
-        for(j = imageOut[i+1][1] - 10; j < 160; j++)
+        for (j = imageOut[i + 1][1] - 10; j < 160; j++)
         {
-            if(!imageInput[i][j])
+            if (!imageInput[i][j])
             {
                 imageOut[i][1] = j;
                 break;
             }
         }
         /* 如果左边界 即将超出中线 则检查是否右丢线 */
-        if(imageOut[i][0] > (160/2 - 10) && imageOut[i][1] >  (160 - 5))
+        if (imageOut[i][0] > (160 / 2 - 10) && imageOut[i][1] > (160 - 5))
         {
             /* 右丢线处理 */
             RoadNoSideProcess(imageInput, imageOut, 2, i);
 
-            if(i > 70)
+            if (i > 70)
             {
                 imageOut[i][0] += 50;
             }
@@ -159,17 +166,16 @@ uint8_t ImageGetSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2])
         }
 
         /* 如果右边界 即将超出中线 则检查是否左丢线 */
-        if(imageOut[i][1] < (160/2 + 10) && imageOut[i][0] <  (5))
+        if (imageOut[i][1] < (160 / 2 + 10) && imageOut[i][0] < (5))
         {
             /* 左丢线处理 */
             RoadNoSideProcess(imageInput, imageOut, 1, i);
 
-            if(i > 70)
+            if (i > 70)
             {
                 imageOut[i][1] -= 50;
             }
             return 2;
-
         }
     }
     return 0;
@@ -183,18 +189,18 @@ uint8_t UpdownSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160])
     imageOut[0][159] = 0;
     imageOut[1][159] = 119;
     /* 用中线比较近的行 判断是否丢线 */
-    for(i = last; i >= 0; i--)
+    for (i = last; i >= 0; i--)
     {
-        if(!imageInput[i][80])
+        if (!imageInput[i][80])
         {
             imageOut[0][80] = i;
             break;
         }
     }
 
-    for(i = last; i < 128; i++)
+    for (i = last; i < 128; i++)
     {
-        if(!imageInput[i][80])
+        if (!imageInput[i][80])
         {
             imageOut[1][80] = i;
             break;
@@ -202,23 +208,23 @@ uint8_t UpdownSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160])
     }
 
     /* 中线往左 寻找边线 */
-    for(i = 80-1; i > 0; i--)
+    for (i = 80 - 1; i > 0; i--)
     {
         imageOut[0][i] = 0;
         imageOut[1][i] = 119;
 
         /* 根据边界连续特性 寻找边界 */
-        for(j = imageOut[0][i+1] + 10; j > 0; j--)
+        for (j = imageOut[0][i + 1] + 10; j > 0; j--)
         {
-            if(!imageInput[j][i])
+            if (!imageInput[j][i])
             {
                 imageOut[0][i] = j;
                 break;
             }
         }
-        for(j = imageOut[1][i+1] - 10; j < 128; j++)
+        for (j = imageOut[1][i + 1] - 10; j < 128; j++)
         {
-            if(!imageInput[j][i])
+            if (!imageInput[j][i])
             {
                 imageOut[1][i] = j;
                 break;
@@ -226,36 +232,76 @@ uint8_t UpdownSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160])
         }
     }
     /*中线往右 寻找边线*/
-    for(i = 80+1; i < 159; i++)
-        {
-            imageOut[0][i] = 0;
-            imageOut[1][i] = 119;
+    for (i = 80 + 1; i < 159; i++)
+    {
+        imageOut[0][i] = 0;
+        imageOut[1][i] = 119;
 
-            /* 根据边界连续特性 寻找边界 */
-            for(j = imageOut[0][i-1] + 10; j > 0; j--)
+        /* 根据边界连续特性 寻找边界 */
+        for (j = imageOut[0][i - 1] + 10; j > 0; j--)
+        {
+            if (!imageInput[j][i])
             {
-                if(!imageInput[j][i])
-                {
-                    imageOut[0][i] = j;
-                    break;
-                }
-            }
-            for(j = imageOut[1][i-1] - 10; j < 128; j++)
-            {
-                if(!imageInput[j][i])
-                {
-                    imageOut[1][i] = j;
-                    break;
-                }
+                imageOut[0][i] = j;
+                break;
             }
         }
+        for (j = imageOut[1][i - 1] - 10; j < 128; j++)
+        {
+            if (!imageInput[j][i])
+            {
+                imageOut[1][i] = j;
+                break;
+            }
+        }
+    }
     return 0;
 }
 
+uint8_t verticalSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160])
+{
+    uint8 i, j;
+    for (i = 80 - 1; i > 0; i--)
+    {
+        for (j = ROAD_MAIN_ROW; j > 0; j--)
+        {
+            if (imageInput[j][i] != imageInput[j + 1][i])
+            {
+                imageOut[0][i] = j;
+                break;
+            }
+        }
+        for (j = ROAD_MAIN_ROW + 1; j < 128; j++)
+        {
+            if (imageInput[j][i] != imageInput[j + 1][i])
+            {
+                imageOut[1][i] = j;
+                break;
+            }
+        }
+    }
+    for (i = 80; i < 160; i++)
+    {
+        for (j = ROAD_MAIN_ROW; j > 0; j--)
+        {
+            if (imageInput[j][i] != imageInput[j + 1][i])
+            {
+                imageOut[1][i] = j;
+                break;
+            }
+        }
+        for (j = ROAD_MAIN_ROW + 1; j < 128; j++)
+        {
+            if (imageInput[j][i] != imageInput[j + 1][i])
+            {
+                imageOut[1][i] = j;
+                break;
+            }
+        }
+    }
 
-
-
-
+    return 0;
+}
 
 /*void borderDetect(uint8 in[][160],uint8 out[][160]){
 		uint8 i,left,right,color=in[128][80];

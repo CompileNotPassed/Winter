@@ -13,6 +13,8 @@ short GetOSTU (unsigned char tmImage[128][160]);
 //void borderDetect(uint8 (*in)[MT9V03X_CSI_W], uint8 (*out)[MT9V03X_CSI_W]);
 uint8_t ImageGetSide(uint8_t imageInput[128][160], uint8_t imageOut[128][2]);
 uint8_t UpdownSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160]);
+uint8_t verticalSideGet(uint8_t imageInput[128][160], uint8_t imageOut[2][160]);
+void edgeDetect(unsigned char image[128][160]);
 //void lq_sobel (unsigned char imageIn[128][160], unsigned char imageOut[128][160], unsigned char Threshold);
 //void lq_sobelAutoThreshold (unsigned char imageIn[128][160], unsigned char imageOut[128][160]);
 

@@ -24,10 +24,10 @@ int main(void)
 	systick_delay_ms(300);	
     
     bspInit();
-    Position_PID_Init(&Motor[0],25,0.1,0,30000,15000);
-    Position_PID_Init(&Motor[1],25,0.1,0,30000,15000);
-    Position_PID_Init(&Motor[2],25,0.1,0,30000,15000);
-    Position_PID_Init(&Motor[3],25,0.1,0,30000,15000);
+    Position_PID_Init(&Motor[0],80,0.1,0,30000,30000);
+    Position_PID_Init(&Motor[1],80,0.1,0,30000,30000);
+    Position_PID_Init(&Motor[2],80,0.1,0,30000,30000);
+    Position_PID_Init(&Motor[3],80,0.1,0,30000,30000);
 	wirelessInit();
 	
     lcd_init();     
@@ -57,12 +57,23 @@ int main(void)
             
         }
         Get_Bin_Image(1,frame,frame);
+        //Get_Bin_Image(3,frame,frame);
         Bin_Image_Filter(frame);
         ImageGetSide(frame, sideLine);
-        UpdownSideGet(frame, updownLine);
-         
+        //UpdownSideGet(frame, updownLine); 
+        verticalSideGet(frame,updownLine);
         //sendImage(frame[0],160*128);
-        lcdOutput(frame[0],160, 128, 160, 128);
+        //lcdOutput(frame[0],160, 128, 160, 128);
+        //getEncoder();
+        sendWare(encoder,sizeof(encoder));
+        // pwm_duty(PWM2_MODULE3_CHB_D3, 7500);  //  0  rightbot
+        // pwm_duty(PWM2_MODULE3_CHA_D2, 7500);  // 1  leftbot
+        // pwm_duty(PWM1_MODULE0_CHB_D13, 7500); //  0  righttop
+        // pwm_duty(PWM1_MODULE0_CHA_D12, 7500); // 0  lefttop
+        lcd_showint16(0,1,encoder[0]);
+        lcd_showint16(0,2,encoder[1]);
+        lcd_showint16(0,3,encoder[2]);
+        lcd_showint16(0,4,encoder[3]);
 	}
 }
 
