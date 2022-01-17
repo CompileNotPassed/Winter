@@ -36,7 +36,7 @@ void PIT_IRQHandler(void)
     {
         PIT_FLAG_CLEAR(PIT_CH0);
         getEncoder();
-        MotorOutput(Motor,&setTarget);
+        //MotorOutput(Motor,&setTarget);
     }
     
     if(PIT_FLAG_GET(PIT_CH1))

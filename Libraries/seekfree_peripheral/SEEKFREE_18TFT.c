@@ -774,8 +774,8 @@ void lcd_display_chinese(uint16 x, uint16 y, uint8 size, const uint8 *p, uint8 n
 //¼ì²â½áÊø
 #define ROAD_END_ROW       10
 
-extern uint8_t sideLine[128][2];
-extern uint8_t updownLine[2][160];
+extern int16 horLine[2][128];
+extern int16 verLine[160][2];
 
 void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 dis_height)
 {
@@ -813,16 +813,16 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
 							}
 						}
 
-                        if(i==sideLine[j][0]){
-                            color=RED;
-                        }
-                        if(i==sideLine[j][1]){
-                            color=GREEN;
-                        }
-                        if (j==updownLine[0][i]){
+                        // if(i==sideLine[j][0]){
+                        //     color=RED;
+                        // }
+                        // if(i==sideLine[j][1]){
+                        //     color=GREEN;
+                        // }
+                        if (j==horLine[0][i]){
                             color=YELLOW;
                         }
-                        if(j==updownLine[1][i]){
+                        if(j==horLine[1][i]){
                             color=PURPLE;
                         }
                         
