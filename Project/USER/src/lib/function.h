@@ -5,8 +5,9 @@
 //ImageProcess
 void getBin(uint8 (*in)[160], uint8 out[][160], char mode);
 void imgFilter(uint8 img[128][160], uint8 mode);
+void sharpenImage(uint8 img[128][160]);
 //BorderDetect
-void horizontalDetect(uint8 img[128][160], int16 horLine[2][128], uint8 mode);
+void horizontalDetect(uint8 img[128][160]);
 void verticalDetect(uint8 img[128][160], int16 verLine[160][2], uint8 mode);
 //Filter
 

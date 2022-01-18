@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\RT106X.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\RT106X.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue Jan 18 02:06:03 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue Jan 18 19:58:24 2022
 <BR><P>
 <H3>Maximum Stack Usage =       1152 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2511,13 +2511,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systick_delay
 </UL>
 
-<P><STRONG><a name="[205]"></a>horizontalDetect</STRONG> (Thumb, 774 bytes, Stack size 40 bytes, libborderdetect.o(.text.horizontalDetect))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = horizontalDetect
+<P><STRONG><a name="[205]"></a>horizontalDetect</STRONG> (Thumb, 870 bytes, Stack size 32 bytes, libborderdetect.o(.text.horizontalDetect))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = horizontalDetect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[204]"></a>imgFilter</STRONG> (Thumb, 490 bytes, Stack size 24 bytes, libimageprocess.o(.text.imgFilter))
+<P><STRONG><a name="[204]"></a>imgFilter</STRONG> (Thumb, 494 bytes, Stack size 24 bytes, libimageprocess.o(.text.imgFilter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = imgFilter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -2547,7 +2547,7 @@ Global Symbols
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 </UL>
 
-<P><STRONG><a name="[1f4]"></a>lcdOutput</STRONG> (Thumb, 478 bytes, Stack size 40 bytes, seekfree_18tft.o(.text.lcdOutput))
+<P><STRONG><a name="[1f4]"></a>lcdOutput</STRONG> (Thumb, 446 bytes, Stack size 40 bytes, seekfree_18tft.o(.text.lcdOutput))
 <BR><BR>[Stack]<UL><LI>Max Depth = 992<LI>Call Chain = lcdOutput &rArr; lcd_set_region &rArr; lcd_writeIndex &rArr; spi_mosi &rArr; LPSPI_MasterTransferBlocking &rArr; LPSPI_SeparateReadData &rArr; __aeabi_assert &rArr; DbgConsole_Printf &rArr; StrFormatPrintf &rArr; ConvertFloatRadixNumToString &rArr; __hardfp_pow &rArr; sqrt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_writedata_16bit
@@ -2640,7 +2640,7 @@ Global Symbols
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcdOutput
 </UL>
 
-<P><STRONG><a name="[a9]"></a>main</STRONG> (Thumb, 324 bytes, Stack size 48 bytes, main.o(.text.main))
+<P><STRONG><a name="[a9]"></a>main</STRONG> (Thumb, 312 bytes, Stack size 48 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 1152<LI>Call Chain = main &rArr; lcd_init &rArr; spi_init &rArr; CLOCK_GetFreq &rArr; CLOCK_GetPerClkFreq &rArr; CLOCK_GetIpgFreq &rArr; CLOCK_GetAhbFreq &rArr; CLOCK_GetPeriphClkFreq &rArr; CLOCK_GetSysPfdFreq &rArr; CLOCK_GetPllFreq &rArr; __aeabi_assert &rArr; DbgConsole_Printf &rArr; StrFormatPrintf &rArr; ConvertFloatRadixNumToString &rArr; __hardfp_pow &rArr; sqrt
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;board_init

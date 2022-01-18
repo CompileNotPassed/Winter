@@ -49,8 +49,10 @@ int main(void)
         }
         //ImageProcess
         getBin(mt9v03x_csi_image, frame, 2);
+        //sharpenImage(frame);
         imgFilter(frame, 2);
-        horizontalDetect(frame, horLine, 1);
+        //getBin(frame, frame, 2);
+        horizontalDetect(frame);
         //verticalDetect(frame, verLine);
         //sendImage(frame[0],160*128);
         lcdOutput(frame[0], 160, 128, 160, 128);

@@ -130,16 +130,49 @@ void imgFilter(uint8 img[128][160], uint8 mode)
         {
             for (nc = 1; nc < 160 - 1; nc = nc + 1)
             {
-                if ((img[nr][nc] == 0) && (img[nr - 1][nc] + img[nr + 1][nc] + img[nr][nc + 1] + img[nr][nc - 1] > 2))
+                if ((img[nr][nc] == 0) && (img[nr - 1][nc] + img[nr + 1][nc] + img[nr][nc + 1] + img[nr][nc - 1] > 2 * 255))
                 {
-                    img[nr][nc] = 1;
+                    img[nr][nc] = 255;
                 }
-                else if ((img[nr][nc] == 1) && (img[nr - 1][nc] + img[nr + 1][nc] + img[nr][nc + 1] + img[nr][nc - 1] < 2))
+                else if ((img[nr][nc] == 255) && (img[nr - 1][nc] + img[nr + 1][nc] + img[nr][nc + 1] + img[nr][nc - 1] < 2 * 255))
                 {
                     img[nr][nc] = 0;
                 }
             }
         }
     }
+    }
+}
+
+void sharpenImage(uint8 img[128][160])
+{
+    int i, j, temp;
+    int sharpen[9] = {-1, -1, -1, -1, 9, -1, -1, -1, -1}; //拉普拉斯锐化模板
+    for (i = 1; i < 128 - 1; i++)
+    { //1~height-2
+        for (j = 1; j < 160 - 1; j++)
+        { //1~width-2
+            temp = img[i - 1][j - 1] * sharpen[0];
+            temp += img[i - 1][j] * sharpen[1];
+            temp += img[i - 1][j + 1] * sharpen[2];
+            temp += img[i][j - 1] * sharpen[3];
+            temp += img[i][j] * sharpen[4];
+            temp += img[i][j + 1] * sharpen[5];
+            temp += img[i + 1][j - 1] * sharpen[6];
+            temp += img[i + 1][j] * sharpen[7];
+            temp += img[i + 1][j + 1] * sharpen[8];
+            if (temp > 255)
+            {
+                img[i][j] = 255;
+            }
+            else if (temp < 0)
+            {
+                img[i][j] = abs(temp);
+            }
+            else
+            {
+                img[i][j] = temp;
+            }
+        }
     }
 }

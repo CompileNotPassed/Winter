@@ -819,12 +819,14 @@ void lcdOutput(uint8 *p, uint16 width, uint16 height, uint16 dis_width, uint16 d
                         // if(i==sideLine[j][1]){
                         //     color=GREEN;
                         // }
-                        if (j==horLine[0][i]){
-                            color=YELLOW;
-                        }
-                        if(j==horLine[1][i]){
-                            color=PURPLE;
-                        }
+                        // if (j==horLine[0][i]){
+                        //     color=YELLOW;
+                        // }
+                        // if(j==horLine[1][i]){
+                        //     color=PURPLE;
+                        // }
+                        if(i==80){color=RED;}
+                        if(j==45){color=RED;}
                         
 
 						lcd_writedata_16bit(color); 
