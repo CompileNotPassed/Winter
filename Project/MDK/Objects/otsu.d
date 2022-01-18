@@ -99,4 +99,6 @@
   ..\..\Libraries\seekfree_peripheral\SEEKFREE_W25QXXJV.h \
   ..\..\Libraries\seekfree_peripheral\SEEKFREE_SCC8660_CSI.h \
   ..\..\Libraries\seekfree_peripheral\SEEKFREE_SCC8660.h \
-  Tools\Motor\Motor.h Tools\Position_PID\Position_PID.h
+  Tools\Motor\Motor.h Tools\Position_PID\Position_PID.h \
+  Element\Border\Border.h Tools\Beep\beep.h Element\Cross\Cross.h \
+  Tools\Otsu\Otsu.h Element\Commondef\Commondef.h Element\Loss\Loss.h

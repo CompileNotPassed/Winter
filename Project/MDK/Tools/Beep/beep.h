@@ -7,5 +7,6 @@
 
 void Beep_on(void);
 void Beep_off(void);
+void buzzer(uint16 time);
 
 #endif

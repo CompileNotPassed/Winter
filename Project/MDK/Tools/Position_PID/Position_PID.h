@@ -14,6 +14,7 @@ typedef struct{
 		int integral;
 		int maxintegral;
 		int integrallimit;
+		int maxout;
 }pid_t; 
 
 
@@ -28,7 +29,7 @@ typedef struct
 extern float target;
 
 
-void 	Position_PID_Init(pid_t *PID_Motor, float Kp,float Ki,float Kd,int maxintegral,int integrallimit);
+void 	Position_PID_Init(pid_t *PID_Motor, float Kp,float Ki,float Kd,int maxintegral,int integrallimit,int maxout);
 float Position_PID_Realize(pid_t *PID_Motor,float v,float v_r);
 
 void Position_LWF_Init(void);

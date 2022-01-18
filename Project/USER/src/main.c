@@ -60,13 +60,14 @@
 #include "Otsu.h"
 #include "Motor.h"
 #include "sendware.h"
+#include "beep.h"
 
 extern uint8 (*a)[MT9V03X_CSI_W];
 
 void BspInit(void);
 
-float q=400;
 extern int encoder[4];
+
 
 int main(void)
 {
@@ -89,12 +90,10 @@ int main(void)
     EnableGlobalIRQ(0);
     while(1)
     {
-			MotorOutput(Motor,&q);
 			if(mt9v03x_csi_finish_flag)
       {
 				mt9v03x_csi_finish_flag = 0;
 				JudgeMid(a,mt9v03x_csi_image,MT9V03X_CSI_W, MT9V03X_CSI_H);
-				//lcd_displayimage032_zoom(mt9v03x_csi_image[0], MT9V03X_CSI_W, MT9V03X_CSI_H, 160, 128);
        }
 //			vcan_sendware(encoder,sizeof(encoder));
     }
@@ -103,7 +102,7 @@ int main(void)
 
 void BspInit()
 {
-	gpio_init(B9,GPO,0,GPIO_PIN_CONFIG); 
+	gpio_init(B11,GPO,0,GPIO_PIN_CONFIG); 
 	gpio_init(D0,GPO,1,GPIO_PIN_CONFIG);  //leftbot
 	gpio_init(D1,GPO,0,GPIO_PIN_CONFIG);  //rightbot
 	gpio_init(D14,GPO,0,GPIO_PIN_CONFIG);  //lefttop
@@ -119,12 +118,18 @@ void BspInit()
   qtimer_quad_init(QTIMER_2,QTIMER2_TIMER0_C3,QTIMER2_TIMER3_C25);
   qtimer_quad_init(QTIMER_3,QTIMER3_TIMER2_B18,QTIMER3_TIMER3_B19);
 	
+	Position_PID_Init(&Motor[0],120,0.1,0,30000,10000,30000);
+	Position_PID_Init(&Motor[1],120,0.1,0,30000,10000,30000);
+	Position_PID_Init(&Motor[2],120,0.1,0,30000,10000,30000);
+	Position_PID_Init(&Motor[3],120,0.1,0,30000,10000,30000);
+	seekfree_wireless_init();
+	buzzer(200);
+	
 	pit_init();                     //初始化pit外设
   pit_interrupt_ms(PIT_CH0,10);  //初始化pit通道0 周期
 	NVIC_SetPriority(PIT_IRQn,0); 
 	
-	Position_PID_Init(Motor,25,0.1,0,30000,15000);
-	seekfree_wireless_init();
 }
+
 
 

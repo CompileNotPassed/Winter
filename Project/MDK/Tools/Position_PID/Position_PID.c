@@ -8,7 +8,7 @@ float fspeed;
 int integral;
 int last_error;
 
-void Position_PID_Init(pid_t *PID_Motor, float Kp,float Ki,float Kd,int maxintegral,int integrallimit){
+void Position_PID_Init(pid_t *PID_Motor, float Kp,float Ki,float Kd,int maxintegral,int integrallimit,int maxout){
 		PID_Motor->SetValue= 0;
 		PID_Motor->ActualValue= 0;
 		PID_Motor->err= 0;
@@ -19,6 +19,7 @@ void Position_PID_Init(pid_t *PID_Motor, float Kp,float Ki,float Kd,int maxinteg
 		PID_Motor->Kd= Kd;
 		PID_Motor->maxintegral=maxintegral;
 		PID_Motor->integrallimit=integrallimit;
+		PID_Motor->maxout=maxout;
 	}
 
 
@@ -41,6 +42,8 @@ float Position_PID_Realize(pid_t *PID_Motor,float Target, float Input){
 				PID_Motor->integral = PID_Motor->maxintegral;
 			if(PID_Motor->integral<=-PID_Motor->maxintegral) 
 				PID_Motor->integral = -PID_Motor->maxintegral;
+			if(PID_Motor->result>=PID_Motor->maxout) PID_Motor->result=PID_Motor->maxout;
+			if(PID_Motor->result<=-PID_Motor->maxout) PID_Motor->result=-PID_Motor->maxout;
 			PID_Motor->err_last = PID_Motor->err;
 			return PID_Motor->result;
 	}

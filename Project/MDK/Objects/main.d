@@ -100,4 +100,5 @@
   ..\..\Libraries\seekfree_peripheral\SEEKFREE_SCC8660_CSI.h \
   ..\..\Libraries\seekfree_peripheral\SEEKFREE_SCC8660.h \
   Tools\Otsu\Otsu.h Tools\Motor\Motor.h \
-  Tools\Position_PID\Position_PID.h Tools\BSP_UART\sendware.h
+  Tools\Position_PID\Position_PID.h Tools\BSP_UART\sendware.h \
+  Tools\Beep\beep.h

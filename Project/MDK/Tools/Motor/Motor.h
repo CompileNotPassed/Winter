@@ -7,7 +7,6 @@
 
 extern pid_t Motor[4];
 void CalculateSpeed(float speedx,float speedy,float speedw,float k);
-void Follow(uint16 a[MT9V03X_CSI_H]);
 void EnableMotor(float speed,uint8 num);
 void Getspeed();
 void MotorOutput(pid_t *Mot,float *Target);

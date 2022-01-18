@@ -41,7 +41,7 @@ void JudgeCross(uint16 LeftLine[MT9V03X_CSI_H],uint16 RightLine[MT9V03X_CSI_H],u
 	}
 	if(crosstime>=Require_Crosstime)
 	{
-		gpio_set(B9,0);
+		Beep_on();
 		crossflag=0;
 		slope_l=Slope_Calculate(crossstart,187,LeftLine);
 		slope_r=Slope_Calculate(crossstart,187,RightLine);
@@ -50,8 +50,113 @@ void JudgeCross(uint16 LeftLine[MT9V03X_CSI_H],uint16 RightLine[MT9V03X_CSI_H],u
 	}
 	else
 	{
-		Beep_on();
+		Beep_off();
 	}
 	crosstimecopy=crosstime;
 	crosstime=0;
+}
+
+uint16 left,right;
+uint16 templeft[MT9V03X_CSI_H],tempright[MT9V03X_CSI_H];
+uint16 LeftLine[MT9V03X_CSI_H],RightLine[MT9V03X_CSI_H],CenterLine[MT9V03X_CSI_H];
+void JudgeCrossRoad(uint8 (*in)[MT9V03X_CSI_W],uint8 require_crosstime)
+{
+	
+	int16 k_left,k_right;
+	
+	for(int i=MT9V03X_CSI_H;i>110;i--)
+	{
+		left=MT9V03X_CSI_W/2;
+		right=MT9V03X_CSI_W/2;
+		if(in[i][left]){
+			for(;in[i][left]&&(left>0);left--)
+			{
+			}
+			templeft[i]=left;
+//			in[i][left]=103;
+		}
+		else{
+			for(;(!in[i][left])&&(left>0);left--)
+			{
+			}
+			if(left==0){
+				for(left=MT9V03X_CSI_W/2;(!in[i][left])&&(left<187);left++)
+				{
+				}
+			}
+			else{
+				for(;(in[i][left])&&(left>0);left--)
+				{
+				}
+			}
+//			in[i][left]=103;
+			templeft[i]=left;
+		}
+		if(in[i][right]){
+			for(;in[i][right]&&(right<187);right++)
+			{
+			}
+//			if(right==187) in[i][186]=101;
+//			else in[i][right]=101;
+			tempright[i]=right;
+//			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
+		}
+		else
+		{
+			for(;(!in[i][right])&&(right<187);right++)
+			{
+			}
+			if(right==187){
+				for(right=MT9V03X_CSI_W;(!in[i][right])&&(right>0);right--)
+				{
+				}
+			}
+			else{
+				for(;(in[i][right])&&(right<187);right++)
+				{
+				}
+			}
+//			if(right==187) in[i][186]=101;
+//			else in[i][right]=101;
+//			in[i][(left+right)/2]=100;
+			tempright[i]=right;
+//			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
+		}
+		
+		k_left=(templeft[110]-templeft[119])/9;
+		k_right=(tempright[110]-tempright[119])/9;
+	}
+	
+	for(int i=109;i>1;i--)
+	{
+		if(in[i][left]){
+			for(;in[i][left]&&(left>0);left--)
+			{
+			}
+			templeft[i]=left;
+		}
+			else {
+			for(;(!in[i][left])&&(left<187);left++)
+			{
+			}
+			templeft[i]=left;
+		}
+			
+		if(in[i][right]){
+			for(;in[i][right]&&(right<187);right++)
+			{
+			}
+			tempright[i]=right;
+		}
+		else {
+			for(;(!in[i][right])&&(right>0);right--)
+			{
+			}
+			tempright[i]=right;
+		}
+		
+		
+	}
+	
+	
 }

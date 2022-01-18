@@ -4,6 +4,6 @@
 #include "headfile.h"
 #include "beep.h"
 
-void JudgeFork();
+void JudgeFork(uint8 (*image)[MT9V03X_CSI_W]);
 
 #endif

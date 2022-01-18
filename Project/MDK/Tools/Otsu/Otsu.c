@@ -1,5 +1,6 @@
 #include "Otsu.h"
 #include "Motor.h"
+#include "Border.h"
 
 //------------------摄像头参数--------------//
 
@@ -8,9 +9,6 @@
 #define GrayScale 256
 
 uint8 (*a)[MT9V03X_CSI_W];
-uint16 i,left,right;
-uint16 LeftLine[MT9V03X_CSI_H],RightLine[MT9V03X_CSI_H],CenterLine[MT9V03X_CSI_H];
-uint16 Crosstime,Crosstimecopy,lastcross,CrossStart;
 
   
 uint8 otsuThreshold(uint8 *image, uint16 width, uint16 height)
@@ -54,6 +52,8 @@ uint8 otsuThreshold(uint8 *image, uint16 width, uint16 height)
     return threshold;  
 }
 
+uint8_t imageOut[2][MT9V03X_CSI_W];
+
 void JudgeMid(uint8 (*a)[MT9V03X_CSI_W],uint8 (*image)[MT9V03X_CSI_W], uint16 width, uint16 height)
 {
 	static int flag=0;
@@ -77,134 +77,11 @@ void JudgeMid(uint8 (*a)[MT9V03X_CSI_W],uint8 (*image)[MT9V03X_CSI_W], uint16 wi
 			}
 		}
 	}
-	borderDetect(a,mt9v03x_csi_image);
+//	UpdownSideGet(a,imageOut);
+//	UpdownShow(a,imageOut);
 	lcdOutput(a[0], MT9V03X_CSI_W, MT9V03X_CSI_H, 160, 128);
-	Follow(CenterLine);
 }
 
-
-
-
-void borderDetect(uint8 (*in)[MT9V03X_CSI_W],uint8 (*out)[MT9V03X_CSI_W])
-{
-	uint16 minus=(MT9V03X_CSI_W-160)/2;
-	for(i=MT9V03X_CSI_H-1;i>110;i--)
-	{
-		left=MT9V03X_CSI_W/2;
-		right=MT9V03X_CSI_W/2;
-		if(in[i][left])
-		{
-			for(;in[i][left]&&(left>0);left--)
-			{
-			}
-			LeftLine[i]=left;
-			in[i][left]=103;
-		}
-		else
-		{
-			for(;(!in[i][left])&&(left>0);left--)
-			{
-			}
-			if(left==0)
-			{
-				for(left=MT9V03X_CSI_W/2;(!in[i][left])&&(left<187);left++)
-				{
-				}
-			}
-			else
-			{
-				for(;(in[i][left])&&(left>0);left--)
-				{
-				}
-			}
-			in[i][left]=103;
-			LeftLine[i]=left;
-		}
-		if(in[i][right])
-		{
-			for(;in[i][right]&&(right<187);right++)
-			{
-			}
-			if(right==187) in[i][186]=101;
-			else in[i][right]=101;
-			RightLine[i]=right;
-			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
-		}
-		else
-		{
-			for(;(!in[i][right])&&(right<187);right++)
-			{
-			}
-			if(right==187)
-			{
-				for(right=MT9V03X_CSI_W;(!in[i][right])&&(right>0);right--)
-				{
-				}
-			}
-			else
-			{
-				for(;(in[i][right])&&(right<187);right++)
-				{
-				}
-			}
-			if(right==187) in[i][186]=101;
-			else in[i][right]=101;
-			in[i][(left+right)/2]=100;
-			RightLine[i]=right;
-			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
-		}
-	}
-	
-	
-	for(;i>1;i--)
-	{
-		if(in[i][left])
-		{
-			for(;in[i][left]&&(left>0);left--)
-			{
-			}
-			in[i][left]=103;
-			LeftLine[i]=left;
-		}
-		else
-		{
-			for(;(!in[i][left])&&(left<187);left++)
-			{
-			}
-			in[i][left]=103;
-			LeftLine[i]=left;
-		}
-		if(in[i][right])
-		{
-			for(;in[i][right]&&(right<187);right++)
-			{
-			}
-			RightLine[i]=right;
-			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
-			if(right==187) in[i][186]=101;
-			else in[i][right] = 101;
-		}
-		else
-		{
-			for(;(!in[i][right])&&(right>0);right--)
-			{
-			}
-			RightLine[i]=right;
-			CenterLine[i]=(LeftLine[i]+RightLine[i])/2;
-			in[i][right] = 101;
-		}
-		
-		
-		if(left>=right)
-		{
-			in[i][left]=0;
-			in[i][right]=0;
-			in[i][(left+right)/2]=255;
-		}
-		in[i][(left+right)/2]=100;
-	}
-	JudgeCross(LeftLine,RightLine,CenterLine,40);
-}
 
  
 float Slope_Calculate(uint8 begin,uint8 end,uint16 *p)
@@ -234,56 +111,17 @@ float Slope_Calculate(uint8 begin,uint8 end,uint16 *p)
 	return result;
 }
 
-void AddLine(uint8 (*a)[MT9V03X_CSI_W], uint16 width, uint16 height)
+void UpdownShow(uint8 (*a)[MT9V03X_CSI_W],uint8_t imageOut[2][MT9V03X_CSI_W])
 {
-	
-}
-
-void JudgeLoss(uint16 LeftLine[MT9V03X_CSI_H],uint16 RightLine[MT9V03X_CSI_H],uint16 CenterLine[MT9V03X_CSI_H])
-{
-	uint16 LeftLoss,RightLoss;
-	uint16 LeftLossStart,RightLossStart;
-	for(int i=118;i>0;i--)
+	for(int i=0;i<187;i++)
 	{
-		if(LeftLine[i]==0&&(RightLine[i]-RightLine[i+1]<3)&&(RightLine[i]!=187))
-		{
-			if(!LeftLossStart) LeftLossStart=i;
-			LeftLoss++;
-		}
-		if(RightLine[i]==187&&(LeftLine[i+1]-LeftLine[i]<3)&&(LeftLine[i]!=0))
-		{
-			if(!RightLossStart) RightLossStart=i;
-			RightLoss++;
-		}
+		uint8 m=imageOut[0][i];
+		a[m][i]=102;
+		uint8 n=imageOut[1][i];
+		a[n][i]=106;
 	}
 }
 
-
-
-
-void JudgeCorner(uint16 LeftLine[MT9V03X_CSI_H],uint16 RightLine[MT9V03X_CSI_H],uint16 CenterLine[MT9V03X_CSI_H])
-{
-	uint16 leftsignal_l,rightsignal_l,leftsignal_r,rightsignal_r;
-	uint16 leftsignal,rightsignal;
-	bool left,right;
-	for(int i=118;i>0;i--)
-	{
-		if(LeftLine[i]-LeftLine[i+1]>5) leftsignal_l++;
-		else if(LeftLine[i]-LeftLine[i+1]<-5) rightsignal_l++;
-		if(RightLine[i]-RightLine[i+1]>5) leftsignal_r++;
-		else if(RightLine[i]-RightLine[i+1]<-5) rightsignal_r++;
-		if(CenterLine[i]-CenterLine[i+1]>5) leftsignal++;
-		else if(CenterLine[i]-CenterLine[i+1]<-5) rightsignal++;
-	}
-	if(leftsignal_l>5&&leftsignal_r>5&&leftsignal>5)
-	{
-		left=1;
-	}
-	else if(rightsignal_l>5&&rightsignal_r>5&&rightsignal>5)
-	{
-		right=1;
-	}
-}
 
 
 
