@@ -10,7 +10,7 @@
       <TargetName>nor_sdram_zf_dtcm_v5</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -185,7 +185,6 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>3</RvdsVP>
             <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -352,7 +351,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>__STARTUP_INITIALIZE_NONCACHEDATA</Define>
@@ -1779,76 +1778,6 @@
               <FileType>1</FileType>
               <FilePath>..\USER\src\main.c</FilePath>
             </File>
-            <File>
-              <FileName>libborderdetect.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libborderdetect.c</FilePath>
-            </File>
-            <File>
-              <FileName>libbsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>libbuzzer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbuzzer.c</FilePath>
-            </File>
-            <File>
-              <FileName>libencoder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libencoder.c</FilePath>
-            </File>
-            <File>
-              <FileName>libimageprocess.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmecmove.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmecmove.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmotor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmotor.c</FilePath>
-            </File>
-            <File>
-              <FileName>libpid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libpid.c</FilePath>
-            </File>
-            <File>
-              <FileName>libwireless.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
-            </File>
-            <File>
-              <FileName>libcalc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libcalc.c</FilePath>
-            </File>
-            <File>
-              <FileName>regRing.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\recognize\regRing.c</FilePath>
-            </File>
-            <File>
-              <FileName>regLost.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\recognize\regLost.c</FilePath>
-            </File>
-            <File>
-              <FileName>libfilter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libfilter.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1868,11 +1797,6 @@
               <FileName>headfile.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\Libraries\seekfree_libraries\headfile.h</FilePath>
-            </File>
-            <File>
-              <FileName>function.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\src\lib\function.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1931,13 +1855,108 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>Tools</GroupName>
+          <Files>
+            <File>
+              <FileName>Otsu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Otsu\Otsu.c</FilePath>
+            </File>
+            <File>
+              <FileName>Position_PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Position_PID\Position_PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>Menu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Menu\Menu.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Motor\Motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>sendware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\BSP_UART\sendware.c</FilePath>
+            </File>
+            <File>
+              <FileName>Follow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Follow\Follow.c</FilePath>
+            </File>
+            <File>
+              <FileName>Addline.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Calculate_Line\Addline.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Bsp</GroupName>
+          <Files>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Beep\beep.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Element</GroupName>
+          <Files>
+            <File>
+              <FileName>Cross.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Cross\Cross.c</FilePath>
+            </File>
+            <File>
+              <FileName>Fork.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Fork\Fork.c</FilePath>
+            </File>
+            <File>
+              <FileName>Parking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Parking\Parking.c</FilePath>
+            </File>
+            <File>
+              <FileName>Round.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Round\Round.c</FilePath>
+            </File>
+            <File>
+              <FileName>Corner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Corner\Corner.c</FilePath>
+            </File>
+            <File>
+              <FileName>Border.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Border\Border.c</FilePath>
+            </File>
+            <File>
+              <FileName>Loss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Loss\Loss.c</FilePath>
+            </File>
+            <File>
+              <FileName>Zebra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Zebra\Zebra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
     <Target>
       <TargetName>nor_sdram_zf_dtcm_v6</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6160000::V6.16::ARMCLANG</pCCUsed>
+      <pCCUsed>6120000::V6.12::.\ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -2112,7 +2131,6 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>3</RvdsVP>
             <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -2266,7 +2284,7 @@
               <MiscControls>-fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb</MiscControls>
               <Define>CPU_MIMXRT1064DVL6A,SKIP_SYSCLK_INIT,XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_DCD_ENABLE =1, XIP_BOOT_HEADER_ENABLE =1,PRINTF_FLOAT_ENABLE=1, SCANF_FLOAT_ENABLE=1, PRINTF_ADVANCED_ENABLE=1, SCANF_ADVANCED_ENABLE=1,FSL_DRIVER_TRANSFER_DOUBLE_WEAK_IRQ=0,USB_STACK_BM,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CODE;..\USER\inc;..\USER\src;..\..\Libraries\seekfree_libraries;..\..\Libraries\nxp_libraries\CMSIS\Include;..\..\Libraries\nxp_libraries\cmsis_drivers;..\..\Libraries\nxp_libraries\drives;..\..\Libraries\nxp_libraries\startup;..\..\Libraries\nxp_libraries\startup\MDK-ARM;..\..\Libraries\nxp_libraries\utilities;..\..\Libraries\nxp_libraries\utilities\debug_console;..\..\Libraries\nxp_libraries\utilities\str;..\..\Libraries\nxp_libraries\xip;..\..\Libraries\nxp_libraries\deceive;..\..\Libraries\nxp_libraries\components\serial_manager;..\..\Libraries\nxp_libraries\components\uart;..\..\Libraries\nxp_libraries\components\lists;..\..\Libraries\nxp_libraries\components\osa;..\..\Libraries\nxp_libraries\components\serial_manager\usb_cdc_adapter;..\..\Libraries\nxp_libraries\middleware\usb\include;..\..\Libraries\nxp_libraries\middleware\usb\phy;..\..\Libraries\nxp_libraries\middleware\usb\device;..\..\Libraries\nxp_libraries\middleware\sdmmc\inc;..\..\Libraries\nxp_libraries\middleware\sdmmc\port;..\..\Libraries\nxp_libraries\middleware\sdmmc\port\usdhc;..\..\Libraries\nxp_libraries\middleware\sdmmc\port\usdhc\interrupt;..\..\Libraries\nxp_libraries\middleware\sdmmc\src;..\..\Libraries\nxp_libraries\middleware\fatfs\source;..\..\Libraries\nxp_libraries\middleware\fatfs\source\fsl_sd_disk;..\..\Libraries\seekfree_libraries\common;..\..\Libraries\seekfree_libraries\board;..\..\Libraries\seekfree_peripheral</IncludePath>
+              <IncludePath>..\CODE;..\USER\inc;..\USER\src;..\..\Libraries\seekfree_libraries;..\..\Libraries\nxp_libraries\CMSIS\Include;..\..\Libraries\nxp_libraries\cmsis_drivers;..\..\Libraries\nxp_libraries\drives;..\..\Libraries\nxp_libraries\startup;..\..\Libraries\nxp_libraries\startup\MDK-ARM;..\..\Libraries\nxp_libraries\utilities;..\..\Libraries\nxp_libraries\utilities\debug_console;..\..\Libraries\nxp_libraries\utilities\str;..\..\Libraries\nxp_libraries\xip;..\..\Libraries\nxp_libraries\deceive;..\..\Libraries\nxp_libraries\components\serial_manager;..\..\Libraries\nxp_libraries\components\uart;..\..\Libraries\nxp_libraries\components\lists;..\..\Libraries\nxp_libraries\components\osa;..\..\Libraries\nxp_libraries\components\serial_manager\usb_cdc_adapter;..\..\Libraries\nxp_libraries\middleware\usb\include;..\..\Libraries\nxp_libraries\middleware\usb\phy;..\..\Libraries\nxp_libraries\middleware\usb\device;..\..\Libraries\nxp_libraries\middleware\sdmmc\inc;..\..\Libraries\nxp_libraries\middleware\sdmmc\port;..\..\Libraries\nxp_libraries\middleware\sdmmc\port\usdhc;..\..\Libraries\nxp_libraries\middleware\sdmmc\port\usdhc\interrupt;..\..\Libraries\nxp_libraries\middleware\sdmmc\src;..\..\Libraries\nxp_libraries\middleware\fatfs\source;..\..\Libraries\nxp_libraries\middleware\fatfs\source\fsl_sd_disk;..\..\Libraries\seekfree_libraries\common;..\..\Libraries\seekfree_libraries\board;..\..\Libraries\seekfree_peripheral;.\Tools\Otsu;.\Tools\Menu;.\Tools\Motor;.\Tools\Position_PID;.\Tools\Beep;.\Element\Cross;.\Element\Fork;.\Element\Parking;.\Element\Round;.\Element\Corner;.\Tools\BSP_UART;.\Element\Border;.\Element\Loss;.\Tools\Follow;.\Element\Zebra;.\Element\Commondef;.\Tools\Calculate_Line</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2279,7 +2297,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>__STARTUP_INITIALIZE_NONCACHEDATA</Define>
@@ -3705,76 +3723,6 @@
               <FileType>1</FileType>
               <FilePath>..\USER\src\main.c</FilePath>
             </File>
-            <File>
-              <FileName>libborderdetect.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libborderdetect.c</FilePath>
-            </File>
-            <File>
-              <FileName>libbsp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbsp.c</FilePath>
-            </File>
-            <File>
-              <FileName>libbuzzer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libbuzzer.c</FilePath>
-            </File>
-            <File>
-              <FileName>libencoder.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libencoder.c</FilePath>
-            </File>
-            <File>
-              <FileName>libimageprocess.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libimageprocess.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmecmove.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmecmove.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmenu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmenu.c</FilePath>
-            </File>
-            <File>
-              <FileName>libmotor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libmotor.c</FilePath>
-            </File>
-            <File>
-              <FileName>libpid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libpid.c</FilePath>
-            </File>
-            <File>
-              <FileName>libwireless.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libwireless.c</FilePath>
-            </File>
-            <File>
-              <FileName>libcalc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libcalc.c</FilePath>
-            </File>
-            <File>
-              <FileName>regRing.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\recognize\regRing.c</FilePath>
-            </File>
-            <File>
-              <FileName>regLost.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\recognize\regLost.c</FilePath>
-            </File>
-            <File>
-              <FileName>libfilter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\src\lib\libfilter.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -3794,11 +3742,6 @@
               <FileName>headfile.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\Libraries\seekfree_libraries\headfile.h</FilePath>
-            </File>
-            <File>
-              <FileName>function.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\src\lib\function.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3857,6 +3800,101 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>Tools</GroupName>
+          <Files>
+            <File>
+              <FileName>Otsu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Otsu\Otsu.c</FilePath>
+            </File>
+            <File>
+              <FileName>Position_PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Position_PID\Position_PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>Menu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Menu\Menu.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Motor\Motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>sendware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\BSP_UART\sendware.c</FilePath>
+            </File>
+            <File>
+              <FileName>Follow.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Follow\Follow.c</FilePath>
+            </File>
+            <File>
+              <FileName>Addline.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Calculate_Line\Addline.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Bsp</GroupName>
+          <Files>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Tools\Beep\beep.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Element</GroupName>
+          <Files>
+            <File>
+              <FileName>Cross.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Cross\Cross.c</FilePath>
+            </File>
+            <File>
+              <FileName>Fork.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Fork\Fork.c</FilePath>
+            </File>
+            <File>
+              <FileName>Parking.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Parking\Parking.c</FilePath>
+            </File>
+            <File>
+              <FileName>Round.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Round\Round.c</FilePath>
+            </File>
+            <File>
+              <FileName>Corner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Corner\Corner.c</FilePath>
+            </File>
+            <File>
+              <FileName>Border.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Border\Border.c</FilePath>
+            </File>
+            <File>
+              <FileName>Loss.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Loss\Loss.c</FilePath>
+            </File>
+            <File>
+              <FileName>Zebra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Element\Zebra\Zebra.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
@@ -3866,14 +3904,5 @@
     <components/>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>RT106X</LayName>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>
